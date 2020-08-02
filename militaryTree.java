@@ -41,18 +41,25 @@ public class militaryTree extends militaryBranch {
     }
 
     public static void main(String[] args) {
+        // Creating the military tree base
         militaryTree wehr = new militaryTree();
-        wehr.setInfo("Bundeswehr", "Germany", "We server Germany", 1955);
+        wehr.setInfo("Bundeswehr", "Germany", "We serve Germany", 1955);
+        // Creating the heer branch
         militaryBranch heer = new militaryBranch();
         heer.setBranch("army", "Heer");
+        // Creating the marine branch
         militaryBranch marine = new militaryBranch();
         marine.setBranch("navy", "Marine");
+        // Creating the luftwaffe branch
         militaryBranch luftwaffe = new militaryBranch();
         luftwaffe.setBranch("air force", "Luftwaffe");
+
+        // Adding the branches
         wehr.branches[0] = heer;
         wehr.branches[1] = marine;
         wehr.branches[2] = luftwaffe;
 
+        // Displaying the info
         wehr.displayInfo();
         for (int i = 0; i < branchNum; i++) {
             wehr.branches[i].displayInfo();
