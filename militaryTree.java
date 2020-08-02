@@ -1,8 +1,12 @@
-public class militaryTree {
+import java.io.*;
+
+public class militaryTree extends militaryBranch {
+    public static final int branchNum = 3;
     private String name;
     private String country;
     private String motto;
     private int foundingYear;
+    public militaryBranch[] branches = new militaryBranch[branchNum];
 
     // A setter function to set the information of the program
     public void setInfo(String n, String c, String m, int y) {
@@ -37,9 +41,22 @@ public class militaryTree {
     }
 
     public static void main(String[] args) {
-        militaryTree de = new militaryTree();
-        militaryTree caf = new militaryTree();
-        de.setInfo("Bundeswehr", "Germany", "We serve Germany", 1953);
-        de.displayInfo();
+        militaryTree wehr = new militaryTree();
+        wehr.setInfo("Bundeswehr", "Germany", "We server Germany", 1955);
+        militaryBranch heer = new militaryBranch();
+        heer.setBranch("army", "Heer");
+        militaryBranch marine = new militaryBranch();
+        marine.setBranch("navy", "Marine");
+        militaryBranch luftwaffe = new militaryBranch();
+        luftwaffe.setBranch("air force", "Luftwaffe");
+        wehr.branches[0] = heer;
+        wehr.branches[1] = marine;
+        wehr.branches[2] = luftwaffe;
+
+        wehr.displayInfo();
+        for (int i = 0; i < branchNum; i++) {
+            wehr.branches[i].displayInfo();
+        }
+        
     }
 }
