@@ -1,12 +1,12 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class militaryTree extends militaryBranch {
-    public static final int branchNum = 3;
     private String name;
     private String country;
     private String motto;
     private int foundingYear;
-    public militaryBranch[] branches = new militaryBranch[branchNum];
+    private ArrayList<militaryBranch> branches = new ArrayList<militaryBranch>();
 
     // A setter function to set the information of the program
     public void setInfo(String n, String c, String m, int y) {
@@ -32,6 +32,13 @@ public class militaryTree extends militaryBranch {
     public int getFoundingYear() {
         return foundingYear;
     }
+    public ArrayList<militaryBranch> getBranchesArrayList() {
+        return branches;
+    }
+
+    public void addBranch(militaryBranch mb) {
+        branches.add(mb);
+    }
 
     public void displayInfo() {
         System.out.println("Name: " + getName());
@@ -43,7 +50,7 @@ public class militaryTree extends militaryBranch {
     public static void main(String[] args) {
         // Creating the military tree base
         militaryTree wehr = new militaryTree();
-        wehr.setInfo("Bundeswehr", "Germany", "We serve Germany", 1955);
+        wehr.setInfo("Bundeswehr", "Germany", "We server Germany", 1955);
         // Creating the heer branch
         militaryBranch heer = new militaryBranch();
         heer.setBranch("army", "Heer");
@@ -53,16 +60,30 @@ public class militaryTree extends militaryBranch {
         // Creating the luftwaffe branch
         militaryBranch luftwaffe = new militaryBranch();
         luftwaffe.setBranch("air force", "Luftwaffe");
+        // Creating the support branch
+        militaryBranch support = new militaryBranch();
+        support.setBranch("support", "Joint Support Service");
+        // Creating the medical branch
+        militaryBranch medical = new militaryBranch();
+        medical.setBranch("medical", "Joint Medical Service");
+        // Creating the cybersecurity branch
+        militaryBranch cyber = new militaryBranch();
+        cyber.setBranch("electronic warfare", "Cyber and Information Domain Service");
 
         // Adding the branches
-        wehr.branches[0] = heer;
-        wehr.branches[1] = marine;
-        wehr.branches[2] = luftwaffe;
+        wehr.addBranch(heer);
+        wehr.addBranch(marine);
+        wehr.addBranch(luftwaffe);
+        wehr.addBranch(support);
+        wehr.addBranch(medical);
+        wehr.addBranch(cyber);
 
         // Displaying the info
         wehr.displayInfo();
-        for (int i = 0; i < branchNum; i++) {
-            wehr.branches[i].displayInfo();
+        System.out.println("\nList of Branches");
+        ArrayList<militaryBranch> branches = wehr.getBranchesArrayList();
+        for (int i = 0; i < branches.size(); i++) {
+            (branches.get(i)).displayInfo();
         }
         
     }
